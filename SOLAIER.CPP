@@ -1,0 +1,200 @@
+ # include<iostream.h>
+# include<conio.h>
+# include<stdio.h>
+# include<stdlib.h>
+# include<string.h>
+# include<graphics.h>
+# include<dos.h>
+void main()
+	 {
+
+
+/* request auto detection */
+int gdriver=DETECT, gmode=VGA;
+/* initialize graphics mode */
+initgraph(&gdriver, &gmode, "C:\\TC\\BGI");
+cleardevice();
+int ch[8][8];
+
+
+
+	   int m=0,x=0,y=0,n=0;
+	   int side;
+
+	   for(int i=0;i<8;i++)
+	     for(int j=0;j<8;j++)
+	       ch[i][j]=55;
+
+	   for( i=0;i<8;i++)
+	     ch[1][i]=30+i;
+	   for( i=0;i<8;i++)
+	     ch[0][i]=40+i;
+
+	   for( i=0;i<8;i++)
+	     ch[6][i]=10+i;
+
+	   for( i=0;i<8;i++)
+	     ch[7][i]=20+i;
+
+	     ch[5][2]=24;
+	     ch[3][4]=24;
+	     ch[4][5]=24;
+	     ch[4][3]=24;
+	     ch[3][6]=24;
+
+	   for( i=0;i<8;i++)
+	     {
+	       for(j=0;j<8;j++)
+		 cout<<ch[i][j]<< "  ";
+	       cout<<endl;
+	     }
+	   int sc=0;
+	   cout<<endl<<"enter number soldier:"<<endl;
+	     cin>>n;
+	   if (sc==0)
+	     x=1;
+	   else
+	     if (sc==1)
+	       x=6;
+	   y=n-1;
+		      int a=1;
+		      int xf,yf;
+	   while(a!=0)
+	   {
+
+	   xf=x;
+	   yf=yf;
+	   cout<<endl<<"enter side(u=1,r=2,l=3,) for mov soldier  :"<<endl;
+	     cin>>side;
+	     while((side<1)||(side>3))
+
+		 {
+		    cout<<endl<<"enter side(u=1,r=2,l=3,) for mov soldier  :"<<endl;
+		     cin>>side;
+
+		 }
+
+
+	   if (side==1)
+	     {
+	       cout<<endl<<"enter number for mov soldier  max2:"<<endl;
+		 cin>>m;
+
+	       while((m>2)||(m<=0))
+		 {
+		   cout<<endl<<"enter number for mov soldier  max2:"<<endl;
+		     cin>>m;
+		 }
+	     }
+
+
+	   switch(side)
+	     {
+	       case(1):
+		 if (sc==0)
+		   {
+		     ch[x+m][y]=ch[x][y];
+		     x=x+m;
+		     if (x<0) x=x*(-1);
+		     y=y;
+		     if (y<0) y=y*(-1);
+		   }
+		 else
+		   if (sc==1)
+		     {
+		       ch[x-m][y]=ch[x][y];
+		       x=x-m;
+		       if (x<0) x=x*(-1);
+		       y=y;
+		       if (y<0) y=y*(-1);
+		     }
+	       break;
+
+	       case(2):
+		 if (sc==0)
+		   {
+		     if (ch[x+1][y+1]!=55)
+		       {
+			 ch[x+1][y+1]=ch[x][y];
+			 x=x+1;
+			 if (x<0) x=x*(-1);
+			 y=y+1;
+			 if (y<0) y=y*(-1);
+		       }
+		   }
+		 else
+		   if (sc==1)
+		     {
+		       if (ch[x-1][y+1]!=55)
+			 {
+			   ch[x-1][y+1]=ch[x][y];
+			   x=x-1;
+			   if (x<0) x=x*(-1);
+			   y=y+1;
+			   if (y<0) y=y*(-1);
+			 }
+		     }
+	       break;
+
+	       case(3):
+		 if (sc==0)
+		   {
+		     if(ch[x+1][y-1]!=55)
+		       {
+			 ch[x+1][y-1]=ch[x][y];
+			 x=x+1;
+			 if (x<0) x=x*(-1);
+			 y=y-1;
+			 if (y<0) y=y*(-1);
+		       }
+		   }
+
+		 else
+		   if (sc==1)
+		     {
+		       if(ch[x-1][y-1]!=55)
+			 {
+			   ch[x-1][y-1]=ch[x][y];
+			   x=x-1;
+			   if (x<0) x=x*(-1);
+			   y=y-1;
+			   if (y<0) y=y*(-1);
+			 }
+		     }
+	       break;
+
+
+	     }
+	       ch[xf][yf]=55;
+
+	  if (sc==0)
+	     {
+	       if((ch[x+1][y]==24)||(ch[x+2][y]==24)||(ch[x+1][y+1]==24)||(ch[x+1][y-1]==24))
+		 cout<<endl<<"** chech white **" ;
+
+	     }
+
+	   if (sc==1)
+	     {
+	       if((ch[x-1][y]==24)||(ch[x-2][y]==24)||(ch[x-1][y+1]==24)||(ch[x-1][y-1]==24))
+		 cout<<endl<<"** chech belack **" ;
+
+	     }
+
+
+	   cout<<endl<<endl<<endl<<"_____________" <<endl;
+	   for( i=0;i<8;i++)
+	     {
+	       for(j=0;j<8;j++)
+		 cout<<ch[i][j]<< "  ";
+	       cout<<endl;
+	     }
+
+	       cout<<endl<<"a" ;
+	     cin>>a;
+
+	     }
+getch();
+
+	    }
+
